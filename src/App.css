@@ -505,6 +505,15 @@ a.btn.btn-box {
   outline: none;
 }
 
+.btn-buynow {
+  background-color: #ffc83a;
+  color: #fff;
+  padding: 0px 10px;
+  height: 30px;
+  line-height: 24px;
+  text-transform: capitalize;
+  font-size: 16px;
+}
 
 /* Scrollbar Styling */
 ::-webkit-scrollbar {
@@ -553,7 +562,8 @@ a.btn.btn-box {
   display: flex;
   flex-direction: column;
   position: relative;
-  background: #c96bc6;
+  /* background: #c96bc6; */
+  background: #fff;
   border-radius: 50px 50px 0 0;
   margin: 0 0 0px 20px;
 }
@@ -1089,7 +1099,8 @@ TEXT-ALIGN: end;
   margin: auto !important;
   bottom: 0;
   height: 100%;
-  background-color: #ae55cb;
+  /* background-color: #ae55cb; */
+  background-color: #fff;
   align-items: end;
   justify-content: center;
 }
@@ -1102,7 +1113,8 @@ TEXT-ALIGN: end;
 }
 
 .bgimgin{
-  background-color: #c66ee2;
+  /* background-color: #c66ee2; */
+  background-color: #fff;
 }
 .headcolor h2 {
   height: 6vh;

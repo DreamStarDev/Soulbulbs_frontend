@@ -40,18 +40,18 @@ const BaseCharacter = (props) => {
                 </figure>
                 <div className='foo-ctn'>
                     <figcaption>
-                        <a href="#">#{props.number}</a>
-                        <p>Price: 0, 20ETH</p>
+                        <a href="#">{String(props.path).substring(3, props.path.length-10)}</a>
+                        <p>0, 05ETH</p>
                     </figcaption>
                     <div className='foot2ctn'>
                         <div className="likes">
-                            <img src={require("../images/heart.png")} alt="" /> {like}
+                            {like}
                             <button className="btn-like" onClick={onClickLike} disabled={!enalbleLike}>
                                 <img src={require("../images/like.png")} alt=""/>
                             </button>
                         </div>
                         {/* <Link to="/details" className="btn btn-box">Buy Now</Link> */}
-                        <Link className="btn btn-box" onClick={onClickBuy}>Buy Now</Link>
+                        <button className="btn btn-buynow" onClick={onClickBuy}>Buy Now</button>
                     </div>
 
                 </div>

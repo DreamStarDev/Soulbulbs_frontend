@@ -14,7 +14,7 @@ import { useAppContext } from '../Context/state';
 function Home() {
   const history = useHistory();
   const appContext = useAppContext();
-  
+
   useEffect(() => {
     appContext.initTraitPath();
   }, []);
@@ -59,7 +59,7 @@ function Home() {
         </div>
       </div>
       <div className="home-img">
-        <img src={require("../images/banner-new1.png")} alt="" />
+        <img src={require("../images/WhiteHoodie.png")} style={{ width: "40%" }} alt="" />
       </div>
       <div className="mdbtmBox" id="mdbtmBox">
         <button type="button" className="close" onClick={close_btn2}>
@@ -84,7 +84,7 @@ function Home() {
           </a>
         </div>
       </div>
-      
+
       <WalletConnectModal />
       <div
         className="modal fade"

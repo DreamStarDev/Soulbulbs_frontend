@@ -42,7 +42,6 @@ function Preview() {
         }
 
         $("#closebtn").click();
-        // console.log(library);
         let mintPrice = await SoulbulbsContract.mintRate();
         let mintPriceInEth = ethers.utils.formatEther(mintPrice);
 
@@ -66,7 +65,6 @@ function Preview() {
 
         let mintPrice = await SoulbulbsContract.paymentTokens(Config.soulAddress);
         let mintPriceInEth = ethers.utils.formatEther(mintPrice);
-        console.log(mintPriceInEth);
         $("#mint_btn").hide();
         let approveTxn = await SoulsContract.approve(Config.contractAddress, ethers.utils.parseEther(mintPriceInEth));
         await approveTxn.wait();
@@ -144,7 +142,9 @@ function Preview() {
 
     const addDna = async () => {
         let dnaStr = generateDNAString();
+        let totalSupply = await SoulbulbsContract.totalSupply();
         await api.post('/addDna', {
+            id: parseInt(totalSupply).toString(),
             dna: dnaStr
         });
     }
@@ -163,7 +163,7 @@ function Preview() {
                                     <div style={{ position: "relative" }}>
                                         <div className='congrates_heading' style={{position: "absolute", top: "32px", margin: "auto", width: "100%"}}>
                                             <h2 className='congo_msg' style={{ color: "white", fontSize: "4rem", fontWeight: "bold" }} >CONGRATULATIONS!</h2>
-                                            <p className='congo_para' style={{ color: "white", fontSize: "2rem", fontSize: "27px", fontWeight: "bold", letterSpacing: "1px" }} >Your hoodie combination has been minted successfully</p>
+                                            <p className='congo_para' style={{ color: "white", fontSize: "2rem", fontSize: "27px", fontWeight: "bold", letterSpacing: "1px" }} >Your combination has been minted successfully</p>
                                         </div>
                                         <img className='' style={{ borderRadius: "0", width: " 100%" }} src={appContext.imageData} />
                                     </div>

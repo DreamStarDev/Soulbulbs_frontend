@@ -74,7 +74,7 @@ const TraitCollection = (props) => {
                             <img src={require('../images/' + props.trait + '/' + img)} />
                         </figure>
                         <figcaption>
-                            <p className='text-dark font-weight-bold'>{img.split('.')[0]} </p>
+                            <p className='text-dark font-weight-bold'>{(img.split('.')[0]).split('_')[1]} </p>
                         </figcaption>
                     </div>
                 ))
