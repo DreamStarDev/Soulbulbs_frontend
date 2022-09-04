@@ -61,22 +61,6 @@ function Details() {
                 </div>
             </div>
 
-
-
-            {/* Modal  */}
-            {/* <div className="modal fade preview-modal" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div className="modal-dialog">
-                    <div className="modal-content">
-                        <img src={require("../images/preview.png")} />
-                    </div>
-                    <div className="action-btn-out">
-                        <div className="action-btn container p-0 d-flex">
-                            <a href="javascript:;" className="btn btn-bg" data-toggle="modal" data-target="#exampleModal">BACK  </a>
-                            <a href="javascript:;" className="btn btn-bg">SAVE  </a>
-                        </div>
-                    </div>
-                </div>
-            </div> */}
             <WalletConnectModal />
         </div>
     )
