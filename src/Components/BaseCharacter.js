@@ -26,9 +26,9 @@ const BaseCharacter = (props) => {
     const onClickLike = async () => {
         await api.post('/likes', {
             id: props.number,
-            like: like+1
+            like: like + 1
         });
-        setLike(like+1);
+        setLike(like + 1);
         setEnableLike(false);
     }
 
@@ -40,14 +40,18 @@ const BaseCharacter = (props) => {
                 </figure>
                 <div className='foo-ctn'>
                     <figcaption>
-                        <a href="#">{String(props.path).substring(3, props.path.length-10)}</a>
-                        <p>0, 05ETH</p>
+                        <a href="#">{String(props.path).substring(3, props.path.length - 10)}</a>
+                        <div>
+                            <p>Allowlist: 0, 03ETH</p>
+                            <p>Public: 0, 05ETH</p>
+                            <p>SOULS: 600</p>
+                        </div>
                     </figcaption>
                     <div className='foot2ctn'>
                         <div className="likes">
                             {like}
                             <button className="btn-like" onClick={onClickLike} disabled={!enalbleLike}>
-                                <img src={require("../images/like.png")} alt=""/>
+                                <img src={require("../images/like.png")} alt="" />
                             </button>
                         </div>
                         {/* <Link to="/details" className="btn btn-box">Buy Now</Link> */}

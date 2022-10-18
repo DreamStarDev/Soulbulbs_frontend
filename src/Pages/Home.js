@@ -10,14 +10,34 @@ import { click } from "@testing-library/user-event/dist/click";
 import WalletConnectModal from "../Components/WalletConnectModal";
 import { useEffect } from 'react';
 import { useAppContext } from '../Context/state';
+import { useWeb3React } from '@web3-react/core'
+import { ethers } from 'ethers';
+import Config from '../Config.json';
+import soulbulbAbi from '../abis/soullabs.json';
 
 function Home() {
   const history = useHistory();
   const appContext = useAppContext();
+  const { library, account, active } = useWeb3React();
 
   useEffect(() => {
     appContext.initTraitPath();
   }, []);
+
+  useEffect(() => {
+    if (active == true) {
+      setWhitelist();
+    }
+
+    async function setWhitelist() {
+      const signer = library.getSigner();
+      const SoulbulbsContract = new ethers.Contract(Config.contractAddress, soulbulbAbi.abi, signer);
+      // TODO: Check this function how to use
+      // let isWhitelisted = await SoulbulbsContract.isAddressWhitelisted(account);
+      // console.log(isWhitelisted);
+      // appContext.setWhitelist(isWhitelisted);
+    }
+  }, [active]);
 
   const listPage = () => {
     $("#closebtn").click();

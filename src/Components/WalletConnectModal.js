@@ -32,7 +32,7 @@ const WalletConnectModal = () => {
     }
 
     const onClickDisconnect = () => {
-        console.log(library);
+        // console.log(library);
         deactivate();
     }
 

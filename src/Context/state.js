@@ -7,6 +7,8 @@ import mergeImages from 'merge-images';
 const AppContext = createContext();
 
 export function AppWrapper({ children }) {
+    const [isAddrWhitelisted, setAddrWhitelisted] = useState(false);
+
     const [traitPath, setTraitPath] = useState({
         background: '',
         body: '',

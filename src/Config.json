@@ -1,5 +1,5 @@
 {
-    "serveUrl": "https://soulbulbs.herokuapp.com/",
+    "serveUrl": "http://192.3.22.121:5000/",
     "networkID": "0x1",
     "contractAddress": "0xF1845601f5cb54E211b73e5550DF7CD8F08e87DD",
     "soulAddress": "0xD455a275B511168AB2A3d5494a8016835E34Ef10"
