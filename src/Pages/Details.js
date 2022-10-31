@@ -40,37 +40,37 @@ function Details() {
                                 <div className="row" style={{ paddingBottom: 30 }}>
                                     <div className="col-md-2 col-sm-4" onClick={() => selectCategory(0)}>
                                         <img 
-                                            src={category != 0 ? require('../images/Icons/background.svg').default : require('../images/Icons/background_highlighted.svg').default} 
+                                            src={category != 0 ? 'images/Icons/background.svg' : 'images/Icons/background_highlighted.svg'} 
                                             alt="Background" 
                                         />
                                     </div>
                                     <div className="col-md-2 col-sm-4" onClick={() => selectCategory(1)}>
                                         <img 
-                                            src={category != 1 ? require('../images/Icons/torso.svg').default : require('../images/Icons/torso_highlighted.svg').default} 
+                                            src={category != 1 ? 'images/Icons/torso.svg' : 'images/Icons/torso_highlighted.svg'} 
                                             alt="Torso" 
                                         />
                                     </div>
                                     <div className="col-md-2 col-sm-4" onClick={() => selectCategory(2)}>
                                         <img 
-                                            src={category != 2 ? require('../images/Icons/bulb.svg').default : require('../images/Icons/bulb_highlighted.svg').default} 
+                                            src={category != 2 ? 'images/Icons/bulb.svg' : 'images/Icons/bulb_highlighted.svg'} 
                                             alt="Bulb" 
                                         />
                                     </div>
                                     <div className="col-md-2 col-sm-4" onClick={() => selectCategory(3)}>
                                         <img 
-                                            src={category != 3 ? require('../images/Icons/el_glasses.svg').default : require('../images/Icons/glasses_highlighted.svg').default} 
+                                            src={category != 3 ? 'images/Icons/el_glasses.svg' : 'images/Icons/glasses_highlighted.svg'} 
                                             alt="Glasses" 
                                         />
                                     </div>
                                     <div className="col-md-2 col-sm-4" onClick={() => selectCategory(4)}>
                                         <img 
-                                            src={category != 4 ? require('../images/Icons/hat.svg').default : require('../images/Icons/hat_highlighted.svg').default } 
+                                            src={category != 4 ? 'images/Icons/hat.svg' : 'images/Icons/hat_highlighted.svg' } 
                                             alt="Hat" 
                                         />
                                     </div>
                                     <div className="col-md-2 col-sm-4" onClick={() => selectCategory(5)}>
                                         <img 
-                                            src={category != 5 ? require('../images/Icons/overhead.svg').default : require('../images/Icons/overhead_highlighted.svg').default} 
+                                            src={category != 5 ? 'images/Icons/overhead.svg' : 'images/Icons/overhead_highlighted.svg'} 
                                             alt="Overhead" 
                                         />
                                     </div>
@@ -98,7 +98,6 @@ function Details() {
                             </div>
                             <div className="details-box">
                                 <figure>
-                                    {/* <img src={require("../images/banner.png")} /> */}
                                     <img src={appContext.imageData} />
                                 </figure>
                                 <figcaption className="text-left d-flex mdbtns">

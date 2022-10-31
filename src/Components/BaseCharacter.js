@@ -36,7 +36,7 @@ const BaseCharacter = (props) => {
         <div className="col-md-3 col-6">
             <div className="list-products-in">
                 <figure >
-                    <img src={require("../images/hoodie/" + props.path)} alt="" />
+                    <img src={"images/hoodie/" + props.path} alt="" />
                 </figure>
                 <div className='foo-ctn'>
                     <figcaption>
@@ -51,7 +51,7 @@ const BaseCharacter = (props) => {
                         <div className="likes">
                             {like}
                             <button className="btn-like" onClick={onClickLike} disabled={!enalbleLike}>
-                                <img src={require("../images/like.png")} alt="" />
+                                <img src="images/like.png" alt="" />
                             </button>
                         </div>
                         {/* <Link to="/details" className="btn btn-box">Buy Now</Link> */}

@@ -7,7 +7,7 @@ import NavBar from '../Components/TopHeader';
 import WalletConnectModal from "../Components/WalletConnectModal";
 import { useAppContext } from '../Context/state';
 import api from '../utils/api';
-import soulbulbAbi from '../abis/soullabs.json';
+import soulbulbAbi from '../abis/soulbulbs.json';
 import souls from '../abis/souls.json';
 import Config from '../Config.json';
 import { useWeb3React } from '@web3-react/core'
@@ -34,30 +34,51 @@ function Preview() {
 
     const onClickEthereum = async () => {
         let res = await checkDna();
-        if (res.duplicated == true) {
+        if (res.duplicated === true) {
             return alert("Current traits combination is already minted.");
         }
-        if (res.completed == false) {
+        if (res.completed === false) {
             return alert("You haven't selected enough traits.");
         }
 
         $("#closebtn").click();
-        let mintPrice = await SoulbulbsContract.mintRate();
-        let mintPriceInEth = ethers.utils.formatEther(mintPrice);
+        let balance = await library.getBalance(account);
+        let balanceInEth = ethers.utils.formatEther(balance);
+        console.log(appContext.isAddrWhitelisted);
 
-        let nftTxn = await SoulbulbsContract.mintWithETH({ value: ethers.utils.parseEther(mintPriceInEth) });
-        $("#mint_btn").hide();
-        await nftTxn.wait();
+        if (appContext.isAddrWhitelisted) { // when address is whitelisted
+            let whiteMintPrice = await SoulbulbsContract.whitelistMintRate();
+            let whiteMintPriceInEth = ethers.utils.formatEther(whiteMintPrice);
+
+            if (balanceInEth <= whiteMintPriceInEth) {
+                return alert("You don't have enough balance to mint.");
+            }
+    
+            let nftTxn = await SoulbulbsContract.whitelistMint(appContext.proof, { value: ethers.utils.parseEther(whiteMintPriceInEth) });
+            $("#mint_btn").hide();
+            await nftTxn.wait();
+        } else {
+            let mintPrice = await SoulbulbsContract.mintRate();
+            let mintPriceInEth = ethers.utils.formatEther(mintPrice);
+    
+            if (balanceInEth <= mintPriceInEth) {
+                return alert("You don't have enough balance to mint.");
+            }
+    
+            let nftTxn = await SoulbulbsContract.mintWithETH({ value: ethers.utils.parseEther(mintPriceInEth) });
+            $("#mint_btn").hide();
+            await nftTxn.wait();
+        }
         congrats();
         addDna();
     }
 
     const onClickSoul = async () => {
         let res = await checkDna();
-        if (res.duplicated == true) {
+        if (res.duplicated === true) {
             return alert("Current traits combination is already minted.");
         }
-        if (res.completed == false) {
+        if (res.completed === false) {
             return alert("You haven't selected enough traits.");
         }
 
@@ -65,10 +86,11 @@ function Preview() {
 
         let mintPrice = await SoulbulbsContract.paymentTokens(Config.soulAddress);
         let mintPriceInEth = ethers.utils.formatEther(mintPrice);
+
         $("#mint_btn").hide();
         let approveTxn = await SoulsContract.approve(Config.contractAddress, ethers.utils.parseEther(mintPriceInEth));
         await approveTxn.wait();
-        let nftTxn = await SoulbulbsContract.mintWithERC20("1", Config.soulAddress, {
+        let nftTxn = await SoulbulbsContract.mintWithERC20(ethers.utils.parseEther(mintPriceInEth), Config.soulAddress, {
             gasLimit: 1000000
         }); 
         await nftTxn.wait();
@@ -127,10 +149,11 @@ function Preview() {
 
     const checkDna = async () => {
         let dnaStr = generateDNAString();
-        let completed = false;
-        if (String(dnaStr).substring(4) !== "0000000000") {
-            completed = true;
-        }
+        // let completed = false;
+        // if (String(dnaStr).substring(4) !== "0000000000") {
+        //     completed = true;
+        // }
+        let completed = true;
         let res = await api.post('/checkDna', {
             dna: dnaStr
         });
@@ -165,7 +188,7 @@ function Preview() {
                                             <h2 className='congo_msg' style={{ color: "white", fontSize: "4rem", fontWeight: "bold" }} >CONGRATULATIONS!</h2>
                                             <p className='congo_para' style={{ color: "white", fontSize: "2rem", fontSize: "27px", fontWeight: "bold", letterSpacing: "1px" }} >Your combination has been minted successfully</p>
                                         </div>
-                                        <img className='' style={{ borderRadius: "0", width: " 100%" }} src={appContext.imageData} />
+                                        <img className='' alt='Preview' style={{ borderRadius: "0", width: " 100%" }} src={appContext.imageData} />
                                     </div>
 
                                 </figure>
@@ -194,10 +217,7 @@ function Preview() {
                         <div className="modal-body">
                             <button type="button" className="close" id="closebtn" data-dismiss="modal" aria-hidden="true">x</button>
                             <div className='popupbox2'>
-                                {/* <div className="vbfg">
-                            <img src={require("./images/rightmark.png")}/>
-                        </div> */}
-                                <h2 style={{ color: "##000000", fontSize: "1rem", fontSize: "27px", color: "black", margin: "8%" }} >Would you like to mint      using ETH or $SOULS</h2>
+                                <h2 style={{ color: "#000000", fontSize: "27px", margin: "8%" }} >Would you like to mint      using ETH or $SOULS</h2>
 
                                 <div className='text-center d-flex pop_up_preview'>
                                     <button className="soul_ethereum btn" style={{ textTransform: "capitalize", color: "#000000", backgroundColor: "#FFC83A", border: "2px solid #FFC83A", lineHeight: "45px" }} onClick={onClickEthereum} >ETHEREUM</button>

@@ -8,6 +8,7 @@ const AppContext = createContext();
 
 export function AppWrapper({ children }) {
     const [isAddrWhitelisted, setAddrWhitelisted] = useState(false);
+    const [proof, setProof] = useState([]);
 
     const [traitPath, setTraitPath] = useState({
         background: '',
@@ -36,25 +37,25 @@ export function AppWrapper({ children }) {
     const generateImage = () => {
         let pathArray = [];
         if (traitPath.background.length !== 0) {
-            pathArray.push(require('../images/background/' + traitPath.background));
+            pathArray.push('images/background/' + traitPath.background);
         }
         if (traitPath.hoodie.length !== 0) {
-            pathArray.push(require('../images/hoodie/' + traitPath.hoodie));
+            pathArray.push('images/hoodie/' + traitPath.hoodie);
         }
         if (traitPath.bulb.length !== 0) {
-            pathArray.push(require('../images/bulb/' + traitPath.bulb));
+            pathArray.push('images/bulb/' + traitPath.bulb);
         }
         if (traitPath.overhead.length !== 0) {
-            pathArray.push(require('../images/overhead/' + traitPath.overhead));
+            pathArray.push('images/overhead/' + traitPath.overhead);
         }
         if (traitPath.hat.length !== 0) {
-            pathArray.push(require('../images/hat/' + traitPath.hat));
+            pathArray.push('images/hat/' + traitPath.hat);
         }
         if (traitPath.glasses.length !== 0) {
-            pathArray.push(require('../images/glasses/' + traitPath.glasses));
+            pathArray.push('images/glasses/' + traitPath.glasses);
         }
         if (traitPath.body.length !== 0) {
-            pathArray.push(require('../images/body/' + traitPath.body));
+            pathArray.push('images/body/' + traitPath.body);
         }
 
         mergeImages(pathArray)
@@ -68,7 +69,7 @@ export function AppWrapper({ children }) {
         // url: `https://mainnet.infura.io/v3/${process.env.INFURA_KEY}`,
         url: `https://mainnet.infura.io/v3`,
         appName: "SoulBulbs",
-        supportedChainIds: [1, 3, 4, 56, 137, 43114],
+        supportedChainIds: [1, 3, 4, 5, 56, 137, 43114],
     });
 
     // For Walletconnect
@@ -80,11 +81,26 @@ export function AppWrapper({ children }) {
 
     // For Metamask
     const Injected = new InjectedConnector({
-        supportedChainIds: [1, 3, 4, 56, 137, 43114]
+        supportedChainIds: [1, 3, 4, 5, 56, 137, 43114]
     });
 
     return (
-        <AppContext.Provider value={{ traitPath, setTraitPath, initTraitPath, imageData, generateImage, CoinbaseWallet, WalletConnect, Injected }}>
+        <AppContext.Provider 
+            value={{ 
+                traitPath, 
+                setTraitPath, 
+                initTraitPath, 
+                imageData, 
+                generateImage, 
+                CoinbaseWallet, 
+                WalletConnect, 
+                Injected,
+                isAddrWhitelisted,
+                setAddrWhitelisted,
+                proof,
+                setProof
+            }}
+        >
             {children}
         </AppContext.Provider>
     );

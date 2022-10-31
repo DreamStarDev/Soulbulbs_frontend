@@ -2,13 +2,14 @@ import { useWeb3React } from '@web3-react/core'
 import { useAppContext } from '../Context/state';
 import { useEffect } from 'react';
 
-const main_network_chain_id = 4;
+const main_network_chain_id = 5;
 
 const WalletConnectModal = () => {
     const appContext = useAppContext();
     const { activate, deactivate, active, chainId, library } = useWeb3React();
 
     useEffect(() => {
+        // eslint-disable-next-line eqeqeq
         if (active == true && chainId != main_network_chain_id) {
             switchNetwork();
             deactivate();
@@ -92,19 +93,15 @@ const WalletConnectModal = () => {
                                 ) :
                                     (
                                         <div className="walleticons">
-                                            <img data-dismiss="modal" src={require("../images/WalletConnect.png")} onClick={onClickWalletConnect} />
-                                            <img data-dismiss="modal" src={require("../images/MetaMask.png")} onClick={onClickMetamask} />
-                                            <img data-dismiss="modal" src={require("../images/Coinbase.png")} onClick={onClickCoinbase} />
+                                            <img data-dismiss="modal" src="images/WalletConnect.png" onClick={onClickWalletConnect} />
+                                            <img data-dismiss="modal" src="images/MetaMask.png" onClick={onClickMetamask} />
+                                            <img data-dismiss="modal" src="images/Coinbase.png" onClick={onClickCoinbase} />
                                         </div>
                                     )
                             }
-                            {/* <div className="walleticons">
-                                <img src={require("../images/Fortmatic.png")} onClick={onClickFortmatic} />
-                                
-                            </div> */}
                         </div>
                         <div className="errorbox">
-                            <img className="errocs" src={require("../images/error.png")} />
+                            <img className="errocs" src="images/error.png" alt="error"/>
                             <p>
                                 Please don't forget to select the base character before you access the changing room
                             </p>

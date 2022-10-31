@@ -62,46 +62,6 @@ function Listpage() {
                   <BaseCharacter path={item} key={index} number={index+1} likes={likeList[index] === undefined ? 0 : likeList[index].count}/>
                 ))
               }
-              {/* <div className="col-md-3 col-6">
-                <div className="list-products-in">
-                  <figure >
-                    <img src={require("../images/p1.png")} alt="" />
-                  </figure>
-                  <div className='foo-ctn'>
-                    <figcaption>
-                      <a href="#">#0001</a>
-                      <p>Price: 0, 20ETH</p>
-                    </figcaption>
-                    <div className='foot2ctn'>
-                      <div className="likes">
-                        <img src={require("../images/heart.png")} alt="" /> 230
-                      </div>
-                      <Link to="/details" className="btn btn-box">Buy Now</Link>
-                    </div>
-
-                  </div>
-
-                </div>
-              </div>
-              <div className="col-md-3 col-6">
-                <div className="list-products-in">
-                  <figure>
-                    <img src={require("../images/p2.png")} alt="" />
-                  </figure>
-                  <div className='foo-ctn'>
-                    <figcaption>
-                      <a href="#">#0001</a>
-                      <p>Price: 0, 20ETH</p>
-                    </figcaption>
-                    <div className='foot2ctn'>
-                      <div className="likes">
-                        <img src={require("../images/heart.png")} alt="" /> 230
-                      </div>
-                      <Link to="/details" className="btn btn-box">Buy Now</Link>
-                    </div>
-                  </div>
-                </div>
-              </div> */}
             </div>
           </div>
         </div>

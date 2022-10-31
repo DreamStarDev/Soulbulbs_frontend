@@ -71,7 +71,7 @@ const TraitCollection = (props) => {
                         <figure className={classnames('', {
                             'selected' : isSelected(img)
                         })}>
-                            <img src={require('../images/' + props.trait + '/' + img)} />
+                            <img src={'images/' + props.trait + '/' + img} />
                         </figure>
                         <figcaption>
                             <p className='text-dark font-weight-bold'>{(img.split('.')[0]).split('_')[1]} </p>
@@ -79,20 +79,6 @@ const TraitCollection = (props) => {
                     </div>
                 ))
             }
-            {/* <div className="col-md-3 cardsAll">
-                <figure className="color-box-in" style={{ backgroundColor: "#D9C7A1" }}></figure>
-                <figcaption>
-                    <span className='text-dark font-weight-bold'>{props.basePath} </span>
-                </figcaption>
-            </div>
-            <div className="col-md-3 cardsAll">
-                <figure>
-                    <img src={require("../images/d2.png")} />
-                </figure>
-                <figcaption>
-                    <span className='text-dark font-weight-bold'>Orange Vest </span>
-                </figcaption>
-            </div> */}
         </>
     )
 }
